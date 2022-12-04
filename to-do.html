@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do application</title>
+    <link rel="stylesheet" href="todo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="task">
+        <input type="text" id="taskinfo" placeholder="Enter Task" />
+        <button id="push">Add Item</button>
+      </div>
+      <div id="addtask"></div>
+    </div>
+    <script>
+      let todoele = document.getElementById("taskinfo");
+      let tasklist = document.getElementById("addtask");
+
+      document.getElementById("push").onclick = function () {
+        if (todoele.value.length == 0) {
+          alert("Enter a task details");
+        } else {
+          tasklist.innerHTML =
+            tasklist.innerHTML +
+            `    
+        <div class="task"> 
+            <span id="work">${todoele.value}</span>
+            <button class="del"><i class="fa fa-trash">x</i></button>
+        </div>`;
+          let alltasks = document.querySelectorAll(".del");
+          for (i = 0; i < alltasks.length; i++) {
+            alltasks[i].onclick = function () {
+              console.log(this);
+              console.log(this.parentNode);
+              this.parentNode.remove();
+            };
+          }
+          todoele.value = "";
+        }
+      };
+    </script>
+  </body>
+</html>
